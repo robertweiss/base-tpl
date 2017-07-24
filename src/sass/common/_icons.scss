@@ -1,0 +1,70 @@
+$icons: (
+    icon-src--svg--arrow-down: (21, 14.2),
+    icon-src--svg--arrow-left: (14.2, 21),
+    icon-src--svg--arrow-right: (14.2, 21),
+    icon-src--svg--arrow-up: (21, 14.2),
+    icon-src--svg--cancel: (18, 18),
+    icon-src--svg--check: (23.3, 18.7),
+    icon-src--svg--email: (24, 16),
+    icon-src--svg--hamburger: (24, 15),
+    icon-src--svg--info: (24.5, 24.5),
+    icon-src--svg--lupe: (23.5, 23.5),
+    icon-src--svg--play: (16, 16.9),
+    icon-src--svg--share: (21.9, 22)
+);
+
+.icon {
+    font-size: 1.5em;
+    position: relative;
+    display: inline-block;
+    fill: currentColor;
+}
+
+@each $icon, $size in $icons {
+    $height: nth($size, 2) / nth($size, 1);
+
+    .icon__#{$icon} {
+        width: 1em;
+        height: #{$height}em;
+    }
+
+    .icon__#{$icon}-_25x {
+        width: .25em;
+        height: .25em * $height;
+    }
+
+    .icon__#{$icon}-_5x {
+        width: .5em;
+        height: .5em * $height;
+    }
+
+    .icon__#{$icon}-_75x {
+        width: .75em;
+        height: .75em * $height;
+    }
+
+    .icon__#{$icon}-1_25x {
+        width: 1.25em;
+        height: 1.25em * $height;
+    }
+
+    .icon__#{$icon}-1_5x {
+        width: 1.5em;
+        height: 1.5em * $height;
+    }
+
+    .icon__#{$icon}-2x {
+        width: 2em;
+        height: 2em * $height;
+    }
+
+    .icon__#{$icon}-3x {
+        width: 3em;
+        height: 3em * $height;
+    }
+
+    .icon__#{$icon}-4x {
+        width: 4em;
+        height: 4em * $height;
+    }
+}

@@ -1,0 +1,48 @@
+{
+    "dest": "./dist/svg/",
+    "shape": {
+        "id": {
+            "generator": "icon-%s"
+        },
+        "dimension": {
+            "maxWidth": 64,
+            "maxHeight": 64,
+            "precision": 1
+        }
+    },
+    "transform": [
+        {
+            "svgo": {
+                "plugins": [
+                    {
+                        "cleanupIDs": false
+                    }
+                ]
+            }
+        }
+    ],
+    "svg": {
+        "xmlDeclaration": false,
+        "doctypeDeclaration": false,
+        "namespaceIDs": false
+    },
+    "mode": {
+        "symbol": {
+            "dest": ".",
+            "prefix": ".icon__%s",
+            "dimensions": "%s",
+            "sprite": "sprites.svg",
+            "inline": true,
+            "render": {
+                "scss": {
+                    "dest": "../../src/sass/common/_icons.scss",
+                    "template": "./src/svg/tpl/sprites.scss"
+                }
+            },
+            "example": {
+                "template": "./src/svg/tpl/sprites.html",
+                "dest": "sprites.html"
+            }
+        }
+    }
+}

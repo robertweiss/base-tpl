@@ -1,0 +1,113 @@
+html {
+    font-size: .9em;
+
+    @include mq-min($sm) {
+        font-size: 1em;
+    }
+
+    @include mq-min($big) {
+        font-size: 1.1em;
+    }
+}
+
+body {
+    color: $black;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol {
+    margin-top: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    line-height: 1.2;
+    color: $grey;
+}
+
+h1 {
+    font-size: $head * .85;
+    margin-bottom: 1rem;
+
+    @include mq-min($mb) {
+        font-size: $head;
+    }
+}
+
+h2 {
+    font-size: $lead;
+    margin-bottom: .5rem;
+}
+
+h3 {
+    font-size: $sublead;
+    margin-bottom: .25rem;
+}
+
+h4 {
+    font-size: $copy;
+    margin-bottom: 0;
+}
+
+p,
+ul,
+dl {
+    font-size: $copy;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &:empty {
+        display: none;
+    }
+
+    @include mq-max($sm) {
+        font-size: $copy * 1.05;
+    }
+
+    @include mq-min($lg) {
+        line-height: 1.55;
+    }
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+a {
+    text-decoration: none;
+    color: $grey;
+}
+
+small,
+.small,
+.caption {
+    font-size: $caption;
+}
+
+.body {
+    ul {
+        li {
+            position: relative;
+            margin-left: 1em;
+            margin-bottom: 1rem;
+
+            &:before {
+                position: absolute;
+                content: "\2013 \0020";
+                margin-left: -1em;
+            }
+        }
+    }
+}

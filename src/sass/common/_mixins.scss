@@ -1,0 +1,70 @@
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Unit Converter
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+$browser-context: 16;
+
+@function em($pixels, $context: $browser-context) {
+    @if (unitless($pixels)) {
+        $pixels: $pixels * 1px;
+    }
+
+    @if (unitless($context)) {
+        $context: $context * 1px;
+    }
+
+    @return $pixels / $context * 1em;
+}
+
+@function rem($pixels, $context: $browser-context) {
+    @if (unitless($pixels)) {
+        $pixels: $pixels * 1px;
+    }
+
+    @if (unitless($context)) {
+        $context: $context * 1px;
+    }
+
+    @return $pixels / $context * 1rem;
+}
+
+
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// Media Queries
+// –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+@mixin mq($resMin, $resMax) {
+    @media screen and (min-width: $resMin) and (max-width: $resMax - .001em) {
+        @content;
+    }
+}
+
+@mixin mq-max($res) {
+    @media screen and (max-width: $res - .001em) {
+        @content;
+    }
+}
+
+@mixin mq-min($res) {
+    @media screen and (min-width: $res) {
+        @content;
+    }
+}
+
+@mixin mq-h($resMin, $resMax) {
+    @media screen and (min-height: $resMin) and (max-height: $resMax - .001em) {
+        @content;
+    }
+}
+
+@mixin mq-max-h($res) {
+    @media screen and (max-height: $res - .001em) {
+        @content;
+    }
+}
+
+@mixin mq-min-h($res) {
+    @media screen and (min-height: $res) {
+        @content;
+    }
+}
