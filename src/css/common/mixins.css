@@ -1,0 +1,34 @@
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+Media Queries
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+@define-mixin mq $resMin, $resMax {
+    @media screen and (min-width: $resMin) and (max-width: $resMax - .001em) {
+        @mixin-content;
+    }
+}
+@define-mixin mq-max $res {
+    @media screen and (max-width: $res - .001em) {
+        @mixin-content;
+    }
+}
+@define-mixin mq-min $res {
+    @media screen and (min-width: $res) {
+        @mixin-content;
+    }
+}
+@define-mixin mq-h $resMin, $resMax {
+    @media screen and (min-height: $resMin) and (max-height: $resMax - .001em) {
+        @mixin-content;
+    }
+}
+@define-mixin mq-max-h $res {
+    @media screen and (max-height: $res - .001em) {
+        @mixin-content;
+    }
+}
+@define-mixin mq-min-h $res {
+    @media screen and (min-height: $res) {
+        @mixin-content;
+    }
+}

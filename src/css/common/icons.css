@@ -1,0 +1,559 @@
+.icon {
+    font-size: 1.5em;
+    position: relative;
+    display: inline-block;
+    fill: currentColor;
+}
+
+.icon-arrow-down {
+    $height: 14.2 / 21;
+    width: 1em;
+    height: calc(1em * ($height));
+
+    &-_25x {
+        width: .25em;
+        height: calc(.25em * ($height));
+    }
+
+    &-_5x {
+        width: .5em;
+        height: calc(.5em * ($height));
+    }
+
+    &-_75x {
+        width: .75em;
+        height: calc(.75em * ($height));
+    }
+
+    &-1_25x {
+        width: 1.25em;
+        height: calc(1.25em * ($height));
+    }
+
+    &-1_5x {
+        width: 1.5em;
+        height: calc(1.5em * ($height));
+    }
+
+    &-2x {
+        width: 2em;
+        height: calc(2em * ($height));
+    }
+
+    &-3x {
+        width: 3em;
+        height: calc(3em * ($height));
+    }
+
+    &-4x {
+        width: 4em;
+        height: calc(4em * ($height));
+    }
+}
+
+.icon-arrow-left {
+    $height: 21 / 14.2;
+    width: 1em;
+    height: calc(1em * ($height));
+
+    &-_25x {
+        width: .25em;
+        height: calc(.25em * ($height));
+    }
+
+    &-_5x {
+        width: .5em;
+        height: calc(.5em * ($height));
+    }
+
+    &-_75x {
+        width: .75em;
+        height: calc(.75em * ($height));
+    }
+
+    &-1_25x {
+        width: 1.25em;
+        height: calc(1.25em * ($height));
+    }
+
+    &-1_5x {
+        width: 1.5em;
+        height: calc(1.5em * ($height));
+    }
+
+    &-2x {
+        width: 2em;
+        height: calc(2em * ($height));
+    }
+
+    &-3x {
+        width: 3em;
+        height: calc(3em * ($height));
+    }
+
+    &-4x {
+        width: 4em;
+        height: calc(4em * ($height));
+    }
+}
+
+.icon-arrow-right {
+    $height: 21 / 14.2;
+    width: 1em;
+    height: calc(1em * ($height));
+
+    &-_25x {
+        width: .25em;
+        height: calc(.25em * ($height));
+    }
+
+    &-_5x {
+        width: .5em;
+        height: calc(.5em * ($height));
+    }
+
+    &-_75x {
+        width: .75em;
+        height: calc(.75em * ($height));
+    }
+
+    &-1_25x {
+        width: 1.25em;
+        height: calc(1.25em * ($height));
+    }
+
+    &-1_5x {
+        width: 1.5em;
+        height: calc(1.5em * ($height));
+    }
+
+    &-2x {
+        width: 2em;
+        height: calc(2em * ($height));
+    }
+
+    &-3x {
+        width: 3em;
+        height: calc(3em * ($height));
+    }
+
+    &-4x {
+        width: 4em;
+        height: calc(4em * ($height));
+    }
+}
+
+.icon-arrow-up {
+    $height: 14.2 / 21;
+    width: 1em;
+    height: calc(1em * ($height));
+
+    &-_25x {
+        width: .25em;
+        height: calc(.25em * ($height));
+    }
+
+    &-_5x {
+        width: .5em;
+        height: calc(.5em * ($height));
+    }
+
+    &-_75x {
+        width: .75em;
+        height: calc(.75em * ($height));
+    }
+
+    &-1_25x {
+        width: 1.25em;
+        height: calc(1.25em * ($height));
+    }
+
+    &-1_5x {
+        width: 1.5em;
+        height: calc(1.5em * ($height));
+    }
+
+    &-2x {
+        width: 2em;
+        height: calc(2em * ($height));
+    }
+
+    &-3x {
+        width: 3em;
+        height: calc(3em * ($height));
+    }
+
+    &-4x {
+        width: 4em;
+        height: calc(4em * ($height));
+    }
+}
+
+.icon-cancel {
+    $height: 18 / 18;
+    width: 1em;
+    height: calc(1em * ($height));
+
+    &-_25x {
+        width: .25em;
+        height: calc(.25em * ($height));
+    }
+
+    &-_5x {
+        width: .5em;
+        height: calc(.5em * ($height));
+    }
+
+    &-_75x {
+        width: .75em;
+        height: calc(.75em * ($height));
+    }
+
+    &-1_25x {
+        width: 1.25em;
+        height: calc(1.25em * ($height));
+    }
+
+    &-1_5x {
+        width: 1.5em;
+        height: calc(1.5em * ($height));
+    }
+
+    &-2x {
+        width: 2em;
+        height: calc(2em * ($height));
+    }
+
+    &-3x {
+        width: 3em;
+        height: calc(3em * ($height));
+    }
+
+    &-4x {
+        width: 4em;
+        height: calc(4em * ($height));
+    }
+}
+
+.icon-check {
+    $height: 18.7 / 23.3;
+    width: 1em;
+    height: calc(1em * ($height));
+
+    &-_25x {
+        width: .25em;
+        height: calc(.25em * ($height));
+    }
+
+    &-_5x {
+        width: .5em;
+        height: calc(.5em * ($height));
+    }
+
+    &-_75x {
+        width: .75em;
+        height: calc(.75em * ($height));
+    }
+
+    &-1_25x {
+        width: 1.25em;
+        height: calc(1.25em * ($height));
+    }
+
+    &-1_5x {
+        width: 1.5em;
+        height: calc(1.5em * ($height));
+    }
+
+    &-2x {
+        width: 2em;
+        height: calc(2em * ($height));
+    }
+
+    &-3x {
+        width: 3em;
+        height: calc(3em * ($height));
+    }
+
+    &-4x {
+        width: 4em;
+        height: calc(4em * ($height));
+    }
+}
+
+.icon-email {
+    $height: 16 / 24;
+    width: 1em;
+    height: calc(1em * ($height));
+
+    &-_25x {
+        width: .25em;
+        height: calc(.25em * ($height));
+    }
+
+    &-_5x {
+        width: .5em;
+        height: calc(.5em * ($height));
+    }
+
+    &-_75x {
+        width: .75em;
+        height: calc(.75em * ($height));
+    }
+
+    &-1_25x {
+        width: 1.25em;
+        height: calc(1.25em * ($height));
+    }
+
+    &-1_5x {
+        width: 1.5em;
+        height: calc(1.5em * ($height));
+    }
+
+    &-2x {
+        width: 2em;
+        height: calc(2em * ($height));
+    }
+
+    &-3x {
+        width: 3em;
+        height: calc(3em * ($height));
+    }
+
+    &-4x {
+        width: 4em;
+        height: calc(4em * ($height));
+    }
+}
+
+.icon-hamburger {
+    $height: 15 / 24;
+    width: 1em;
+    height: calc(1em * ($height));
+
+    &-_25x {
+        width: .25em;
+        height: calc(.25em * ($height));
+    }
+
+    &-_5x {
+        width: .5em;
+        height: calc(.5em * ($height));
+    }
+
+    &-_75x {
+        width: .75em;
+        height: calc(.75em * ($height));
+    }
+
+    &-1_25x {
+        width: 1.25em;
+        height: calc(1.25em * ($height));
+    }
+
+    &-1_5x {
+        width: 1.5em;
+        height: calc(1.5em * ($height));
+    }
+
+    &-2x {
+        width: 2em;
+        height: calc(2em * ($height));
+    }
+
+    &-3x {
+        width: 3em;
+        height: calc(3em * ($height));
+    }
+
+    &-4x {
+        width: 4em;
+        height: calc(4em * ($height));
+    }
+}
+
+.icon-info {
+    $height: 24.5 / 24.5;
+    width: 1em;
+    height: calc(1em * ($height));
+
+    &-_25x {
+        width: .25em;
+        height: calc(.25em * ($height));
+    }
+
+    &-_5x {
+        width: .5em;
+        height: calc(.5em * ($height));
+    }
+
+    &-_75x {
+        width: .75em;
+        height: calc(.75em * ($height));
+    }
+
+    &-1_25x {
+        width: 1.25em;
+        height: calc(1.25em * ($height));
+    }
+
+    &-1_5x {
+        width: 1.5em;
+        height: calc(1.5em * ($height));
+    }
+
+    &-2x {
+        width: 2em;
+        height: calc(2em * ($height));
+    }
+
+    &-3x {
+        width: 3em;
+        height: calc(3em * ($height));
+    }
+
+    &-4x {
+        width: 4em;
+        height: calc(4em * ($height));
+    }
+}
+
+.icon-lupe2 {
+    $height: 23.5 / 23.5;
+    width: 1em;
+    height: calc(1em * ($height));
+
+    &-_25x {
+        width: .25em;
+        height: calc(.25em * ($height));
+    }
+
+    &-_5x {
+        width: .5em;
+        height: calc(.5em * ($height));
+    }
+
+    &-_75x {
+        width: .75em;
+        height: calc(.75em * ($height));
+    }
+
+    &-1_25x {
+        width: 1.25em;
+        height: calc(1.25em * ($height));
+    }
+
+    &-1_5x {
+        width: 1.5em;
+        height: calc(1.5em * ($height));
+    }
+
+    &-2x {
+        width: 2em;
+        height: calc(2em * ($height));
+    }
+
+    &-3x {
+        width: 3em;
+        height: calc(3em * ($height));
+    }
+
+    &-4x {
+        width: 4em;
+        height: calc(4em * ($height));
+    }
+}
+
+.icon-play {
+    $height: 16.9 / 16;
+    width: 1em;
+    height: calc(1em * ($height));
+
+    &-_25x {
+        width: .25em;
+        height: calc(.25em * ($height));
+    }
+
+    &-_5x {
+        width: .5em;
+        height: calc(.5em * ($height));
+    }
+
+    &-_75x {
+        width: .75em;
+        height: calc(.75em * ($height));
+    }
+
+    &-1_25x {
+        width: 1.25em;
+        height: calc(1.25em * ($height));
+    }
+
+    &-1_5x {
+        width: 1.5em;
+        height: calc(1.5em * ($height));
+    }
+
+    &-2x {
+        width: 2em;
+        height: calc(2em * ($height));
+    }
+
+    &-3x {
+        width: 3em;
+        height: calc(3em * ($height));
+    }
+
+    &-4x {
+        width: 4em;
+        height: calc(4em * ($height));
+    }
+}
+
+.icon-share {
+    $height: 22 / 21.9;
+    width: 1em;
+    height: calc(1em * ($height));
+
+    &-_25x {
+        width: .25em;
+        height: calc(.25em * ($height));
+    }
+
+    &-_5x {
+        width: .5em;
+        height: calc(.5em * ($height));
+    }
+
+    &-_75x {
+        width: .75em;
+        height: calc(.75em * ($height));
+    }
+
+    &-1_25x {
+        width: 1.25em;
+        height: calc(1.25em * ($height));
+    }
+
+    &-1_5x {
+        width: 1.5em;
+        height: calc(1.5em * ($height));
+    }
+
+    &-2x {
+        width: 2em;
+        height: calc(2em * ($height));
+    }
+
+    &-3x {
+        width: 3em;
+        height: calc(3em * ($height));
+    }
+
+    &-4x {
+        width: 4em;
+        height: calc(4em * ($height));
+    }
+}
+

@@ -11,7 +11,7 @@
     box-shadow:
         inset -2px -2px $grey,
         inset 1px 1px $grey,
-        inset 2px 2px lighten($grey, 20%);
+        inset 2px 2px $lightgrey;
 
     &:enabled:hover,
     &:not(.is-disabled):hover {
@@ -22,7 +22,7 @@
         box-shadow:
             inset 2px 2px $grey,
             inset -1px -1px $grey,
-            inset -2px -2px lighten($grey, 20%);
+            inset -2px -2px $lightgrey;
     }
 
     &[disabled],
@@ -40,7 +40,7 @@
 .ui-button__small {
     font-size: $caption;
 
-    @include mq-max($sm) {
+    @mixin mq-max $sm {
         padding: .25rem .5rem .3rem;
         font-size: $caption;
     }

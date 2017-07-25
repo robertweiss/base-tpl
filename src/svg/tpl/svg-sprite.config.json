@@ -1,8 +1,8 @@
 {
-    "dest": "./dist/svg/",
+    "dest": "../../dist/svg/",
     "shape": {
         "id": {
-            "generator": "icon-%s"
+            "generator": "icon-"
         },
         "dimension": {
             "maxWidth": 64,
@@ -29,18 +29,18 @@
     "mode": {
         "symbol": {
             "dest": ".",
-            "prefix": ".icon__%s",
+            "prefix": ".",
             "dimensions": "%s",
             "sprite": "sprites.svg",
             "inline": true,
             "render": {
-                "scss": {
-                    "dest": "../../src/sass/common/_icons.scss",
-                    "template": "./src/svg/tpl/sprites.scss"
+                "css": {
+                    "dest": "../../src/css/common/icons.css",
+                    "template": "./tpl/sprites.css"
                 }
             },
             "example": {
-                "template": "./src/svg/tpl/sprites.html",
+                "template": "./tpl/sprites.html",
                 "dest": "sprites.html"
             }
         }

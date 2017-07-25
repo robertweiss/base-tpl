@@ -1,18 +1,17 @@
 {
     "extends": "stylelint-config-standard",
-    "plugins": [
-        "stylelint-scss"
-    ],
     "rules": {
         "at-rule-empty-line-before": ["always", {"except": ["first-nested", "after-same-name"]}],
-        "at-rule-no-unknown": [true, {"ignoreAtRules": ["include", "extend", "font-face"]}],
+        "at-rule-no-unknown": [true, {"ignoreAtRules": ["extend", "font-face", "mixin", "define-mixin", "mixin-content"]}],
         "at-rule-no-vendor-prefix": true,
         "declaration-empty-line-before": "never",
         "indentation": 4,
         "max-empty-lines": 2,
         "max-nesting-depth": 4,
         "no-duplicate-selectors": true,
+        "no-invalid-double-slash-comments": null,
         "number-leading-zero": "never",
+        "property-no-unknown": [true, "ignoreProperties": ["/^lost-/", "//"]],
         "property-no-vendor-prefix": true,
         "selector-attribute-operator-space-after": "never",
         "selector-attribute-operator-space-before": "never",

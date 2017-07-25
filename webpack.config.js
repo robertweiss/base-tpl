@@ -42,16 +42,11 @@ module.exports = {
 
             {
                 test: /\.vue$/,
-                loader: 'vue-loader',
-                options: {
-                    loaders: {
-                        scss: 'vue-style-loader!css-loader!sass-loader!postcss-loader'
-                    }
-                }
+                loader: 'vue-loader'
             },
 
             {
-                test: /\.(sass|scss)$/,
+                test: /\.(css)$/,
                 use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [
@@ -59,24 +54,25 @@ module.exports = {
                             loader: 'css-loader',
                             query: {
                                 sourceMap: true,
-                                importLoaders: 2,
+                                importLoaders: 1,
                                 minimize: !DEV
-                            }
-                        },
-                        {
-                            loader : 'sass-loader',
-                            options: {
-                                sourceMap: true
                             }
                         },
                         {
                             loader : 'postcss-loader',
                             options: {
-                                plugins: function () {
-                                    return [
-                                        require('autoprefixer')
-                                    ];
-                                }
+                                parser: require('postcss-scss'),
+                                sourceMap: true,
+                                plugins: (loader)=> [
+                                    require('precss'),
+                                    require('lost'),
+                                    require('postcss-functions')({
+                                        functions: {
+                                            em: (val)=> (val / 16 * 1) + 'em',
+                                            rem: (val)=> (val / 16 * 1) + 'rem'
+                                    }}),
+                                    require('autoprefixer')(),
+                                ]
                             }
                         }
                     ]
@@ -139,14 +135,10 @@ module.exports = {
     devtool: DEV ? 'eval-source-map' : '',
 
     devServer: {
-        headers: {
-            'Access-Control-Allow-Origin': '*'
-        },
         stats: 'minimal',
         proxy: {
             "/**/": {
-                target: URL,
-                changeOrigin: true
+                target: URL
             }
         }
     }

@@ -1,0 +1,98 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+
+
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+Content
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+main {
+    lost-utility: clearfix;
+    margin: 0 auto;
+    max-width: $max;
+    padding: 1rem;
+    flex: 1 0 auto;
+    width: 100%;
+    overflow: hidden;
+}
+
+
+/* –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+Grid
+––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.ui-row {
+    lost-utility: clearfix;
+    lost-flex-container: row;
+    margin-bottom: 1rem;
+}
+
+.ui-col1of2 {
+    @mixin mq-max $mb {
+        &:not(:last-child) {
+            margin-bottom: 1.5rem;
+        }
+    }
+    @mixin mq-min $mb {
+        lost-column: 1/2;
+    }
+}
+
+.ui-col1of3 {
+    background: green;
+
+    @mixin mq-max $mb {
+        &:not(:last-child) {
+            margin-bottom: 1.5rem;
+        }
+    }
+    @mixin mq-min $mb {
+        lost-column: 1/3;
+    }
+}
+
+.ui-col2of3 {
+    @mixin mq-max $mb {
+        &:not(:last-child) {
+            margin-bottom: 1.5rem;
+        }
+    }
+    @mixin mq-min $mb {
+        lost-column: 2/3;
+    }
+}
+
+.ui-col1of4 {
+    @mixin mq-max $tn {
+        &:not(:last-child) {
+            margin-bottom: 1.5rem;
+        }
+    }
+    @mixin mq $tn, $sm {
+        lost-column: 1/2 2;
+
+        &:nth-child(2n) {
+            margin-bottom: 1.5rem;
+        }
+    }
+    @mixin mq-min $sm {
+        lost-column: 1/4;
+    }
+}

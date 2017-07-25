@@ -1,11 +1,10 @@
 html {
     font-size: .9em;
 
-    @include mq-min($sm) {
+    @mixin mq-min $sm {
         font-size: 1em;
     }
-
-    @include mq-min($big) {
+    @mixin mq-min $big {
         font-size: 1.1em;
     }
 }
@@ -36,7 +35,7 @@ h1 {
     font-size: $head * .85;
     margin-bottom: 1rem;
 
-    @include mq-min($mb) {
+    @mixin mq-min $mb {
         font-size: $head;
     }
 }
@@ -71,11 +70,10 @@ dl {
         display: none;
     }
 
-    @include mq-max($sm) {
+    @mixin mq-max $sm {
         font-size: $copy * 1.05;
     }
-
-    @include mq-min($lg) {
+    @mixin mq-min $lg {
         line-height: 1.55;
     }
 }
