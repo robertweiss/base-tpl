@@ -77,20 +77,6 @@ module.exports = {
                         }
                     ]
                 }))
-            },
-            {
-                test: /\.(jpg|png|svg)$/,
-                loader: 'file-loader',
-                options: {
-                    name: 'img/[name].[ext]?[hash]'
-                }
-            },
-            {
-                test: /\.(woff|woff2)$/,
-                loader: 'file-loader',
-                options: {
-                    name: 'fonts/[name].[ext]?[hash]'
-                }
             }
         ]
     },
@@ -136,6 +122,7 @@ module.exports = {
 
     devServer: {
         stats: 'minimal',
+        contentBase: path.resolve(__dirname, '../../'),
         proxy: {
             "/**/": {
                 target: URL
