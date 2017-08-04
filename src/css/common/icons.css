@@ -419,7 +419,7 @@
     }
 }
 
-.icon-lupe2 {
+.icon-lupe {
     $height: 23.5 / 23.5;
     width: 1em;
     height: calc(1em * ($height));

@@ -30,6 +30,7 @@ module.exports = {
         "eol-last": 1,
         'no-console': process.env.NODE_ENV === 'production' ? 1 : 0,
         'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+        'no-plusplus': 0,
         'func-names': 0,
         'space-before-function-paren': [1, 'never'],
         'import/extensions': [1, 'always', {

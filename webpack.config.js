@@ -5,6 +5,7 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 
 const {homepage: URL} = require('./package.json');
@@ -54,8 +55,7 @@ module.exports = {
                             loader: 'css-loader',
                             query: {
                                 sourceMap: true,
-                                importLoaders: 1,
-                                minimize: !DEV
+                                importLoaders: 1
                             }
                         },
                         {
@@ -66,17 +66,33 @@ module.exports = {
                                 plugins: (loader)=> [
                                     require('precss'),
                                     require('lost'),
+                                    require('rucksack-css'),
                                     require('postcss-functions')({
                                         functions: {
                                             em: (val)=> (val / 16 * 1) + 'em',
                                             rem: (val)=> (val / 16 * 1) + 'rem'
                                     }}),
                                     require('autoprefixer')(),
+                                    require('postcss-normalize')({forceImport: true})
                                 ]
                             }
                         }
                     ]
                 }))
+            },
+            {
+                test: /\.(jpg|png|svg)$/,
+                loader: 'file-loader',
+                options: {
+                    name: 'img/[name].[ext]?[hash]'
+                }
+            },
+            {
+                test: /\.(woff|woff2)$/,
+                loader: 'file-loader',
+                options: {
+                    name: 'fonts/[name].[ext]?[hash]'
+                }
             }
         ]
     },
@@ -102,7 +118,7 @@ module.exports = {
             notify: false,
             host: 'localhost',
             port: 3000,
-            proxy: 'http://localhost:8081/',
+            proxy: 'http://localhost:8080/',
             open: false
         }, {reload: false}
         )),
@@ -111,6 +127,13 @@ module.exports = {
             allChunks: true,
             disable: DEV
         }),
+        ifEnv.prod(new OptimizeCssAssetsPlugin({
+            cssProcessorOptions: {
+                discardComments: {removeAll: true},
+                calc: true,
+                discardEmpty: true
+            }
+        })),
         ifEnv.prod(new NyanProgressPlugin()),
         ifEnv.prod(new webpack.DefinePlugin({
             'process.env': {NODE_ENV: '"production"'}
@@ -121,6 +144,7 @@ module.exports = {
     devtool: DEV ? 'eval-source-map' : '',
 
     devServer: {
+        headers: { "Access-Control-Allow-Origin": "*" },
         stats: 'minimal',
         contentBase: path.resolve(__dirname, '../../'),
         proxy: {
