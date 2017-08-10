@@ -6,7 +6,7 @@
     "author": "Robert Weiss",
     "license": "ISC",
     "scripts": {
-        "dev": "rm -rf ./dist && npm run svg && NODE_ENV=development webpack-dashboard -- nodemon --watch webpack.config.js ./node_modules/.bin/webpack-dev-server --hot --inline",
+        "dev": "rm -rf ./dist ./includes/structure/css.inc.php && touch ./includes/structure/css.inc.php && npm run svg && NODE_ENV=development webpack-dashboard -- nodemon --watch webpack.config.js ./node_modules/.bin/webpack-dev-server --hot --inline",
         "build": "NODE_ENV=production webpack",
         "svg": "cd ./src/svg && svg-sprite --config ./tpl/svg-sprite.config.json ./**/*.svg"
     },

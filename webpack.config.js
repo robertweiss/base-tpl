@@ -5,7 +5,6 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 
@@ -106,8 +105,7 @@ module.exports = {
             filename: '../includes/structure/css.inc.php',
             inject: false,
             hash: true,
-            environment: process.env.NODE_ENV,
-            alwaysWriteToDisk: true
+            environment: process.env.NODE_ENV
         }),
         new HtmlWebpackPlugin({
             template: './includes/structure/js.inc.ejs',
@@ -115,7 +113,6 @@ module.exports = {
             inject: false,
             hash: true
         }),
-        new HtmlWebpackHarddiskPlugin(),
         ifEnv.dev(new webpack.NamedModulesPlugin()),
         ifEnv.dev(new DashboardPlugin()),
         ifEnv.dev(new BrowserSyncPlugin({
