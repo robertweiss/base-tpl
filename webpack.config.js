@@ -5,6 +5,7 @@ const DashboardPlugin = require('webpack-dashboard/plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 
@@ -73,6 +74,7 @@ module.exports = {
                                             rem: (val)=> (val / 16 * 1) + 'rem'
                                     }}),
                                     require('autoprefixer')(),
+                                    require('postcss-sass-color-functions'),
                                     require('postcss-normalize')({forceImport: true})
                                 ]
                             }
@@ -81,14 +83,14 @@ module.exports = {
                 }))
             },
             {
-                test: /\.(jpg|png|svg)$/,
+                test: /\.(jpg|png|svg|gif)$/,
                 loader: 'file-loader',
                 options: {
                     name: 'img/[name].[ext]?[hash]'
                 }
             },
             {
-                test: /\.(woff|woff2)$/,
+                test: /\.(ttf|woff|woff2)$/,
                 loader: 'file-loader',
                 options: {
                     name: 'fonts/[name].[ext]?[hash]'
@@ -103,7 +105,9 @@ module.exports = {
             template: './includes/structure/css.inc.ejs',
             filename: '../includes/structure/css.inc.php',
             inject: false,
-            hash: true
+            hash: true,
+            environment: process.env.NODE_ENV,
+            alwaysWriteToDisk: true
         }),
         new HtmlWebpackPlugin({
             template: './includes/structure/js.inc.ejs',
@@ -111,6 +115,7 @@ module.exports = {
             inject: false,
             hash: true
         }),
+        new HtmlWebpackHarddiskPlugin(),
         ifEnv.dev(new webpack.NamedModulesPlugin()),
         ifEnv.dev(new DashboardPlugin()),
         ifEnv.dev(new BrowserSyncPlugin({
@@ -118,7 +123,7 @@ module.exports = {
             notify: false,
             host: 'localhost',
             port: 3000,
-            proxy: 'http://localhost:8080/',
+            proxy: 'http://localhost:8081/',
             open: false
         }, {reload: false}
         )),
@@ -147,6 +152,7 @@ module.exports = {
         headers: { "Access-Control-Allow-Origin": "*" },
         stats: 'minimal',
         contentBase: path.resolve(__dirname, '../../'),
+        port: 8081,
         proxy: {
             "/**/": {
                 target: URL
