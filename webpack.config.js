@@ -64,6 +64,7 @@ module.exports = {
                                 parser: require('postcss-scss'),
                                 sourceMap: true,
                                 plugins: (loader)=> [
+                                    require('postcss-calc'),
                                     require('precss'),
                                     require('lost'),
                                     require('rucksack-css'),
@@ -99,7 +100,12 @@ module.exports = {
     },
 
     plugins: [
-        new FriendlyErrorsWebpackPlugin(),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+            Vue: ['vue/dist/vue.esm.js', 'default']
+        }),
         new HtmlWebpackPlugin({
             template: './includes/structure/css.inc.ejs',
             filename: '../includes/structure/css.inc.php',
@@ -143,17 +149,18 @@ module.exports = {
         ifEnv.prod(new webpack.optimize.UglifyJsPlugin())
     ],
 
-    devtool: DEV ? 'eval-source-map' : '',
+    devtool: DEV ? 'eval-source-map' : 'hidden-source-map',
 
     devServer: {
         headers: { "Access-Control-Allow-Origin": "*" },
-        stats: 'minimal',
         contentBase: path.resolve(__dirname, '../../'),
         port: 8081,
         proxy: {
             "/**/": {
                 target: URL
             }
-        }
+        },
+        stats: 'none',
+        quiet: true
     }
 }
