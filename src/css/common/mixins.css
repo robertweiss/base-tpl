@@ -3,12 +3,12 @@ Media Queries
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 @define-mixin mq $resMin, $resMax {
-    @media screen and (min-width: $resMin) and (max-width: $resMax - .001em) {
+    @media screen and (min-width: $resMin) and (max-width: calc($resMax - .001em)) {
         @mixin-content;
     }
 }
 @define-mixin mq-max $res {
-    @media screen and (max-width: $res - .001em) {
+    @media screen and (max-width: calc($res - .001em)) {
         @mixin-content;
     }
 }
@@ -18,12 +18,12 @@ Media Queries
     }
 }
 @define-mixin mq-h $resMin, $resMax {
-    @media screen and (min-height: $resMin) and (max-height: $resMax - .001em) {
+    @media screen and (min-height: $resMin) and (max-height: calc(($resMax - .001em)) {
         @mixin-content;
     }
 }
 @define-mixin mq-max-h $res {
-    @media screen and (max-height: $res - .001em) {
+    @media screen and (max-height: calc(($res - .001em)) {
         @mixin-content;
     }
 }
