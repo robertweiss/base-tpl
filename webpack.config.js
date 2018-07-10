@@ -4,11 +4,15 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const IP = require('ip');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 
-const { homepage: URL } = require('./package.json');
+const {
+    homepage: URL
+} = require('./package.json');
+const myIP = IP.address();
 const DEV = process.env.NODE_ENV !== 'production' ? true : false;
 const ifEnv = {
     prod(fn) {
@@ -38,8 +42,7 @@ module.exports = {
     },
 
     module: {
-        loaders: [
-            {
+        loaders: [{
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
@@ -55,8 +58,7 @@ module.exports = {
                 use: ['css-hot-loader'].concat(
                     ExtractTextPlugin.extract({
                         fallback: 'style-loader',
-                        use: [
-                            {
+                        use: [{
                                 loader: 'css-loader',
                                 query: {
                                     sourceMap: true,
@@ -134,19 +136,16 @@ module.exports = {
         ifEnv.dev(new webpack.NamedModulesPlugin()),
         ifEnv.dev(new DashboardPlugin()),
         ifEnv.dev(
-            new BrowserSyncPlugin(
-                {
-                    files: ['**/*.php', '**/*.ejs'],
-                    notify: false,
-                    host: 'localhost',
-                    port: 3000,
-                    proxy: 'http://localhost:8080/',
-                    open: false,
-                },
-                {
-                    reload: false,
-                }
-            )
+            new BrowserSyncPlugin({
+                files: ['**/*.php', '**/*.ejs'],
+                notify: false,
+                host: 'localhost',
+                port: 3000,
+                proxy: `http://${myIP}:8080/`,
+                open: false,
+            }, {
+                reload: false,
+            })
         ),
         new ExtractTextPlugin({
             filename: 'css/[name].bundle.css',
@@ -179,16 +178,20 @@ module.exports = {
 
     devServer: {
         headers: {
-            'Access-Control-Allow-Origin': '*',
+            "Access-Control-Allow-Origin": "*"
         },
         contentBase: path.resolve(__dirname, '../../'),
+        host: myIP,
         port: 8080,
         proxy: {
-            '/**/*': {
-                target: URL,
-            },
+            "/**/*": {
+                target: URL
+            }
         },
         stats: 'none',
-        quiet: true,
-    },
-};
+        overlay: {
+            warnings: true,
+            errors: true
+        }
+    }
+}
