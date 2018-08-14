@@ -160,6 +160,7 @@ module.exports = {
                     },
                     calc: true,
                     discardEmpty: true,
+                    reduceIdents: false
                 },
             })
         ),
