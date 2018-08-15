@@ -24,7 +24,7 @@
 .align_right {
     margin-bottom: 1rem;
 
-    @include mq-max($mb) {
+    @mixin mq-max $mb {
         width: 100% !important;
 
         img {

@@ -1,5 +1,5 @@
 @import 'normalize-opentype.css/normalize-opentype.scss';
-@import './common/mixins';
+@import 'common/mixins.css';
 @import 'common/variables.css';
 @import 'common/fonts.css';
 @import 'common/icons.css';

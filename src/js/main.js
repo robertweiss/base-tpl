@@ -1,4 +1,6 @@
-import {polyfill} from 'array.from'; // eslint-disable-line no-unused-vars
+import {
+    polyfill // eslint-disable-line no-unused-vars
+} from 'array.from';
 import svg4everybody from 'svg4everybody';
 
 import {} from '../css/style.css';

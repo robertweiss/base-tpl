@@ -1,12 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
-const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const IP = require('ip');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 
 const {
@@ -24,6 +24,7 @@ const ifEnv = {
 };
 
 module.exports = {
+    mode: DEV ? 'development' : 'production',
     context: __dirname,
     entry: {
         main: './src/js/main.js',
@@ -37,12 +38,12 @@ module.exports = {
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {
-            vue$: 'vue/dist/vue.esm.js',
+            vue$: 'vue/dist/vue.esm.js'
         },
     },
 
     module: {
-        loaders: [{
+        rules: [{
                 test: /\.js$/,
                 loader: 'babel-loader',
                 exclude: /node_modules/,
@@ -55,46 +56,42 @@ module.exports = {
 
             {
                 test: /\.(css)$/,
-                use: ['css-hot-loader'].concat(
-                    ExtractTextPlugin.extract({
-                        fallback: 'style-loader',
-                        use: [{
-                                loader: 'css-loader',
-                                query: {
-                                    sourceMap: true,
-                                    importLoaders: 1,
-                                },
-                            },
-                            {
-                                loader: 'postcss-loader',
-                                options: {
-                                    parser: require('postcss-scss'),
-                                    sourceMap: true,
-                                    plugins: loader => [
-                                        require('precss'),
-                                        require('lost'),
-                                        require('rucksack-css'),
-                                        require('postcss-functions')({
-                                            functions: {
-                                                em: val => val / 16 * 1 + 'em',
-                                                rem: val =>
-                                                    val / 16 * 1 + 'rem',
-                                            },
-                                        }),
-                                        require('postcss-calc')({
-                                            mediaQueries: true,
-                                        }),
-                                        require('autoprefixer')(),
-                                        require('postcss-sass-color-functions'),
-                                        require('postcss-normalize')({
-                                            forceImport: true,
-                                        }),
-                                    ],
-                                },
-                            },
-                        ],
-                    })
-                ),
+                use: [
+                    DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            sourceMap: true,
+                            importLoaders: 1,
+                        },
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            parser: require('postcss-scss'),
+                            sourceMap: true,
+                            plugins: loader => [
+                                require('precss'),
+                                require('lost'),
+                                require('postcss-functions')({
+                                    functions: {
+                                        em: val => val / 16 * 1 + 'em',
+                                        rem: val =>
+                                            val / 16 * 1 + 'rem',
+                                    },
+                                }),
+                                require('postcss-calc')({
+                                    mediaQueries: true,
+                                }),
+                                require('autoprefixer')(),
+                                require('postcss-sass-color-functions'),
+                                require('postcss-normalize')({
+                                    forceImport: true,
+                                }),
+                            ],
+                        },
+                    },
+                ]
             },
             {
                 test: /\.(jpg|png|svg|gif)$/,
@@ -110,7 +107,7 @@ module.exports = {
                     name: 'fonts/[name].[ext]?[hash]',
                 },
             },
-        ],
+        ]
     },
 
     plugins: [
@@ -133,7 +130,6 @@ module.exports = {
             inject: false,
             hash: true,
         }),
-        ifEnv.dev(new webpack.NamedModulesPlugin()),
         ifEnv.dev(new DashboardPlugin()),
         ifEnv.dev(
             new BrowserSyncPlugin({
@@ -147,21 +143,9 @@ module.exports = {
                 reload: false,
             })
         ),
-        new ExtractTextPlugin({
-            filename: 'css/[name].bundle.css',
-            allChunks: true,
-            disable: DEV,
-        }),
         ifEnv.prod(
-            new OptimizeCssAssetsPlugin({
-                cssProcessorOptions: {
-                    discardComments: {
-                        removeAll: true,
-                    },
-                    calc: true,
-                    discardEmpty: true,
-                    reduceIdents: false
-                },
+            new MiniCssExtractPlugin({
+                filename: 'css/[name].bundle.css'
             })
         ),
         ifEnv.prod(new NyanProgressPlugin()),
@@ -172,8 +156,27 @@ module.exports = {
                 },
             })
         ),
-        ifEnv.prod(new webpack.optimize.UglifyJsPlugin()),
     ],
+    optimization: {
+        namedModules: true,
+        minimizer: [
+            new UglifyJSPlugin({
+                sourceMap: true,
+                cache: true,
+                parallel: true
+            }),
+            new OptimizeCssAssetsPlugin({
+                cssProcessorOptions: {
+                    discardComments: {
+                        removeAll: true,
+                    },
+                    calc: true,
+                    discardEmpty: true,
+                    reduceIdents: false
+                },
+            })
+        ]
+    },
 
     devtool: DEV ? 'eval-source-map' : 'hidden-source-map',
 
