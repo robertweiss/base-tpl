@@ -8,6 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const NyanProgressPlugin = require('nyan-progress-webpack-plugin');
+const SizePlugin = require('size-plugin');
 
 const {
     homepage: URL
@@ -26,6 +27,14 @@ const ifEnv = {
 module.exports = {
     mode: DEV ? 'development' : 'production',
     context: __dirname,
+    stats: {
+        all: false,
+        builtAt: true,
+        colors: true,
+        errors: true,
+        errorDetails: true,
+        hash: true
+    },
     entry: {
         main: './src/js/main.js',
     },
@@ -83,6 +92,7 @@ module.exports = {
                                 require('postcss-calc')({
                                     mediaQueries: true,
                                 }),
+                                require('postcss-responsive-type'),
                                 require('autoprefixer')(),
                                 require('postcss-sass-color-functions'),
                                 require('postcss-normalize')({
@@ -149,6 +159,7 @@ module.exports = {
             })
         ),
         ifEnv.prod(new NyanProgressPlugin()),
+        ifEnv.prod(new SizePlugin()),
         ifEnv.prod(
             new webpack.DefinePlugin({
                 'process.env': {

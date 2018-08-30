@@ -7,7 +7,7 @@
     "license": "ISC",
     "scripts": {
         "dev": "rm -rf ./dist ./includes/structure/css.inc.php && touch ./includes/structure/css.inc.php && npm run svg && NODE_ENV=development webpack-dashboard -m -- nodemon -q --watch webpack.config.js ./node_modules/.bin/webpack-dev-server --hot --inline",
-        "build": "NODE_ENV=production webpack",
+        "build": "clear && NODE_ENV=production webpack",
         "svg": "cd ./src/svg && svg-sprite --config ./tpl/svg-sprite.config.json ./**/*.svg"
     },
     "browserslist": [
@@ -39,9 +39,11 @@
         "postcss-functions": "^2.1.1",
         "postcss-loader": "^2.0.6",
         "postcss-normalize": "^4.0.0",
+        "postcss-responsive-type": "^1.0.0",
         "postcss-sass-color-functions": "^1.1.0",
         "postcss-scss": "^1.0.2",
         "precss": "^2.0.0",
+        "size-plugin": "^1.0.0",
         "style-loader": "^0.22.1",
         "stylelint": "^9.4.0",
         "stylelint-config-standard": "^18.2.0",
