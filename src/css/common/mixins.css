@@ -2,33 +2,38 @@
 Media Queries
 ––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-@define-mixin mq $resMin, $resMax {
+@mixin mq($resMin, $resMax) {
     @media screen and (min-width: $resMin) and (max-width: calc($resMax - .001em)) {
-        @mixin-content;
+        @content;
     }
 }
-@define-mixin mq-max $res {
+
+@mixin mq-max($res) {
     @media screen and (max-width: calc($res - .001em)) {
-        @mixin-content;
+        @content;
     }
 }
-@define-mixin mq-min $res {
+
+@mixin mq-min($res) {
     @media screen and (min-width: $res) {
-        @mixin-content;
+        @content;
     }
 }
-@define-mixin mq-h $resMin, $resMax {
+
+@mixin mq-h($resMin, $resMax) {
     @media screen and (min-height: $resMin) and (max-height: calc(($resMax - .001em)) {
-        @mixin-content;
+        @content;
     }
 }
-@define-mixin mq-max-h $res {
+
+@mixin mq-max-h($res) {
     @media screen and (max-height: calc(($res - .001em)) {
-        @mixin-content;
+        @content;
     }
 }
-@define-mixin mq-min-h $res {
+
+@mixin mq-min-h($res) {
     @media screen and (min-height: $res) {
-        @mixin-content;
+        @content;
     }
 }

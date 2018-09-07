@@ -2,7 +2,7 @@
 }
 
 .mainnav--toggle {
-    @mixin mq-min $sm {
+    @include mq-min($sm) {
         display: none;
     }
 }

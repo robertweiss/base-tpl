@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const IP = require('ip');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -9,6 +10,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 const NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 const SizePlugin = require('size-plugin');
+const PostCSSConfig = require('./postcss.config');
 
 const {
     homepage: URL
@@ -55,7 +57,13 @@ module.exports = {
         rules: [{
                 test: /\.js$/,
                 loader: 'babel-loader',
-                exclude: /node_modules/,
+                exclude: file => (
+                    /node_modules/.test(file) &&
+                    !/\.vue\.js/.test(file)
+                ),
+                options: {
+                    cacheDirectory: true
+                }
             },
 
             {
@@ -76,30 +84,7 @@ module.exports = {
                     },
                     {
                         loader: 'postcss-loader',
-                        options: {
-                            parser: require('postcss-scss'),
-                            sourceMap: true,
-                            plugins: loader => [
-                                require('precss'),
-                                require('lost'),
-                                require('postcss-functions')({
-                                    functions: {
-                                        em: val => val / 16 * 1 + 'em',
-                                        rem: val =>
-                                            val / 16 * 1 + 'rem',
-                                    },
-                                }),
-                                require('postcss-calc')({
-                                    mediaQueries: true,
-                                }),
-                                require('postcss-responsive-type'),
-                                require('autoprefixer')(),
-                                require('postcss-sass-color-functions'),
-                                require('postcss-normalize')({
-                                    forceImport: true,
-                                }),
-                            ],
-                        },
+                        options: PostCSSConfig
                     },
                 ]
             },
@@ -111,7 +96,7 @@ module.exports = {
                 },
             },
             {
-                test: /\.(ttf|woff|woff2)$/,
+                test: /\.(woff|woff2)$/,
                 loader: 'file-loader',
                 options: {
                     name: 'fonts/[name].[ext]?[hash]',
@@ -140,6 +125,7 @@ module.exports = {
             inject: false,
             hash: true,
         }),
+        new VueLoaderPlugin(),
         ifEnv.dev(new DashboardPlugin()),
         ifEnv.dev(
             new BrowserSyncPlugin({
