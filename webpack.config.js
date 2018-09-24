@@ -1,20 +1,20 @@
+/* globals __dirname, process */
 const path = require('path');
 const webpack = require('webpack');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const IP = require('ip');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const NyanProgressPlugin = require('nyan-progress-webpack-plugin');
 const SizePlugin = require('size-plugin');
 const PostCSSConfig = require('./postcss.config');
 
-const {
-    homepage: URL
-} = require('./package.json');
+const {homepage: URL} = require('./package.json');
+
 const myIP = IP.address();
 const DEV = process.env.NODE_ENV !== 'production' ? true : false;
 const ifEnv = {
@@ -23,7 +23,7 @@ const ifEnv = {
     },
     dev(fn) {
         return DEV ? fn : () => {};
-    },
+    }
 };
 
 module.exports = {
@@ -38,29 +38,27 @@ module.exports = {
         hash: true
     },
     entry: {
-        main: './src/js/main.js',
+        main: './src/js/main.js'
     },
     output: {
         path: path.resolve(__dirname, './dist'),
         publicPath: '/site/templates/dist/',
-        filename: 'js/[name].bundle.js',
+        filename: 'js/[name].bundle.js'
     },
 
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             vue$: 'vue/dist/vue.esm.js'
-        },
+        }
     },
 
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.js$/,
                 loader: 'babel-loader',
-                exclude: file => (
-                    /node_modules/.test(file) &&
-                    !/\.vue\.js/.test(file)
-                ),
+                exclude: (file) => /node_modules/.test(file) && !/\.vue\.js/.test(file),
                 options: {
                     cacheDirectory: true
                 }
@@ -68,7 +66,7 @@ module.exports = {
 
             {
                 test: /\.vue$/,
-                loader: 'vue-loader',
+                loader: 'vue-loader'
             },
 
             {
@@ -79,29 +77,29 @@ module.exports = {
                         loader: 'css-loader',
                         options: {
                             sourceMap: true,
-                            importLoaders: 1,
-                        },
+                            importLoaders: 1
+                        }
                     },
                     {
                         loader: 'postcss-loader',
                         options: PostCSSConfig
-                    },
+                    }
                 ]
             },
             {
                 test: /\.(jpg|png|svg|gif)$/,
                 loader: 'file-loader',
                 options: {
-                    name: 'img/[name].[ext]?[hash]',
-                },
+                    name: 'img/[name].[ext]?[hash]'
+                }
             },
             {
                 test: /\.(woff|woff2)$/,
                 loader: 'file-loader',
                 options: {
-                    name: 'fonts/[name].[ext]?[hash]',
-                },
-            },
+                    name: 'fonts/[name].[ext]?[hash]'
+                }
+            }
         ]
     },
 
@@ -110,34 +108,37 @@ module.exports = {
             $: 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery',
-            Vue: ['vue/dist/vue.esm.js', 'default'],
+            Vue: ['vue/dist/vue.esm.js', 'default']
         }),
         new HtmlWebpackPlugin({
-            template: './includes/structure/css.inc.ejs',
-            filename: '../includes/structure/css.inc.php',
+            template: './partials/css.inc.ejs',
+            filename: '../partials/css.inc.php',
             inject: false,
             hash: true,
-            environment: process.env.NODE_ENV,
+            environment: process.env.NODE_ENV
         }),
         new HtmlWebpackPlugin({
-            template: './includes/structure/js.inc.ejs',
-            filename: '../includes/structure/js.inc.php',
+            template: './partials/js.inc.ejs',
+            filename: '../partials/js.inc.php',
             inject: false,
-            hash: true,
+            hash: true
         }),
         new VueLoaderPlugin(),
         ifEnv.dev(new DashboardPlugin()),
         ifEnv.dev(
-            new BrowserSyncPlugin({
-                files: ['**/*.php', '**/*.ejs'],
-                notify: false,
-                host: 'localhost',
-                port: 3000,
-                proxy: `http://${myIP}:8080/`,
-                open: false,
-            }, {
-                reload: false,
-            })
+            new BrowserSyncPlugin(
+                {
+                    files: ['**/*.php', '**/*.ejs'],
+                    notify: false,
+                    host: 'localhost',
+                    port: 3000,
+                    proxy: `http://${myIP}:8080/`,
+                    open: false
+                },
+                {
+                    reload: false
+                }
+            )
         ),
         ifEnv.prod(
             new MiniCssExtractPlugin({
@@ -149,10 +150,10 @@ module.exports = {
         ifEnv.prod(
             new webpack.DefinePlugin({
                 'process.env': {
-                    NODE_ENV: '"production"',
-                },
+                    NODE_ENV: '"production"'
+                }
             })
-        ),
+        )
     ],
     optimization: {
         namedModules: true,
@@ -165,12 +166,12 @@ module.exports = {
             new OptimizeCssAssetsPlugin({
                 cssProcessorOptions: {
                     discardComments: {
-                        removeAll: true,
+                        removeAll: true
                     },
                     calc: true,
                     discardEmpty: true,
                     reduceIdents: false
-                },
+                }
             })
         ]
     },
@@ -179,13 +180,13 @@ module.exports = {
 
     devServer: {
         headers: {
-            "Access-Control-Allow-Origin": "*"
+            'Access-Control-Allow-Origin': '*'
         },
         contentBase: path.resolve(__dirname, '../../'),
         host: myIP,
         port: 8080,
         proxy: {
-            "/**/*": {
+            '/**/*': {
                 target: URL
             }
         },
@@ -195,4 +196,4 @@ module.exports = {
             errors: true
         }
     }
-}
+};

@@ -2,10 +2,11 @@
 
 $siteTitle = '';
 $home = $pages->get('/');
+$config->urls->dist = $config->urls->site.'templates/dist';
 
 $navModule = $modules->get("MarkupSimpleNavigation");
 
-$iconPath = $config->urls->templates.'dist/svg/sprites.svg';
+$iconPath = $config->urls->dist.'/svg/sprites.svg';
 
 $paginationOptions = array(
     'nextItemLabel'	=> "<svg class='icon-arrow-right'><use xlink:href='{$iconPath}#icon-arrow-right'></use></svg>",
