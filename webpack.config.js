@@ -7,6 +7,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 const IP = require('ip');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const NyanProgressPlugin = require('nyan-progress-webpack-plugin');
@@ -39,6 +40,7 @@ module.exports = {
     },
     entry: {
         main: './src/js/main.js'
+        // 'basic-page': './src/js/basic-page.js'
     },
     output: {
         path: path.resolve(__dirname, './dist'),
@@ -121,14 +123,16 @@ module.exports = {
             template: './partials/js.inc.ejs',
             filename: '../partials/js.inc.php',
             inject: false,
-            hash: true
+            hash: true,
+            alwaysWriteToDisk: true
         }),
+        new HtmlWebpackHarddiskPlugin(),
         new VueLoaderPlugin(),
         ifEnv.dev(new DashboardPlugin()),
         ifEnv.dev(
             new BrowserSyncPlugin(
                 {
-                    files: ['**/*.php', '**/*.ejs'],
+                    files: ['**/*.php', '**/*.ejs', '!partials/js.inc.php'],
                     notify: false,
                     host: 'localhost',
                     port: 3000,

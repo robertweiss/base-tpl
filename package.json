@@ -1,12 +1,12 @@
 {
     "name": "frontend",
     "homepage": "http://base.test/",
-    "version": "1.6.0",
+    "version": "1.6.1",
     "description": "Dev and build workflow based on webpack 4",
     "author": "Robert Weiss",
     "license": "ISC",
     "scripts": {
-        "dev": "rm -rf ./dist ./includes/structure/css.inc.php && touch ./includes/structure/css.inc.php && npm run svg && NODE_ENV=development webpack-dashboard -m -- nodemon -q --watch webpack.config.js ./node_modules/.bin/webpack-dev-server --hot --inline",
+        "dev": "rm -rf ./dist ./partials/css.inc.php && touch ./partials/css.inc.php && npm run svg && NODE_ENV=development webpack-dashboard -m -- nodemon -q --watch webpack.config.js ./node_modules/.bin/webpack-dev-server --hot --inline",
         "build": "clear && NODE_ENV=production webpack",
         "svg": "cd ./src/svg && svg-sprite --config ./tpl/svg-sprite.config.json ./**/*.svg",
         "test": "jest || true"
@@ -32,6 +32,7 @@
         "eslint-plugin-prettier": "^2.6.2",
         "eslint-plugin-vue": "^5.0.0-beta.3",
         "file-loader": "^2.0.0",
+        "html-webpack-harddisk-plugin": "^0.2.0",
         "html-webpack-plugin": "^3.2.0",
         "ip": "^1.1.5",
         "jest": "^23.6.0",
