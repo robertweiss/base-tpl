@@ -63,6 +63,7 @@
         "vue-jest": "^2.6.0",
         "vue-loader": "^15.3.0",
         "vue-style-loader": "^4.1.2",
+        "vue-template-compiler": "^2.6.6",
         "wallaby-vue-compiler": "^1.0.3",
         "webpack": "^4.17.1",
         "webpack-cli": "^3.1.0",
@@ -74,7 +75,7 @@
         "array.from": "^1.0.3",
         "normalize-opentype.css": "^0.2.4",
         "svg4everybody": "^2.1.9",
-        "vue": "^2.5.17"
+        "vue": "^2.6.6"
     },
     "globalDependencies": {
         "nodemon": "1.18.3"

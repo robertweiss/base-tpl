@@ -74,7 +74,14 @@ module.exports = {
             {
                 test: /\.(css)$/,
                 use: [
-                    DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    DEV
+                        ? {
+                              loader: 'style-loader',
+                              options: {
+                                  singleton: true
+                              }
+                          }
+                        : MiniCssExtractPlugin.loader,
                     {
                         loader: 'css-loader',
                         options: {

@@ -8,7 +8,7 @@ module.exports = {
         "eslint:recommended",
         "prettier",
         "prettier/standard",
-        "plugin:vue/strongly-recommended"
+        "plugin:vue/essential"
     ],
     plugins: ["vue", "prettier", "import"],
     env: {
@@ -45,9 +45,18 @@ module.exports = {
         "vue/html-closing-bracket-spacing": ["warn", {
             "startTag": "never",
             "endTag": "never",
-            "selfClosingTag": "never"
+            "selfClosingTag": "always"
         }],
         "vue/html-indent": ["warn", 4],
+        "vue/html-self-closing": ["warn", {
+            "html": {
+                "void": "always",
+                "normal": "always",
+                "component": "always"
+            },
+            "svg": "always",
+            "math": "always"
+        }],
         "vue/html-quotes": ["warn", "double"],
         "vue/max-attributes-per-line": ["warn", {
             "singleline": 2,
@@ -56,7 +65,7 @@ module.exports = {
                 "allowFirstLine": false
             }
         }],
-        "vue/mustache-interpolation-spacing": ["warn", "never"],
+        "vue/mustache-interpolation-spacing": ["warn", "always"],
         "vue/no-spaces-around-equal-signs-in-attribute": "warn",
         "vue/order-in-components": "warn",
         "vue/this-in-template": ["warn", "never"],
